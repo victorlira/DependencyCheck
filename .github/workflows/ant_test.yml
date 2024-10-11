@@ -1,7 +1,6 @@
 name: Test Ant
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - stabilizeant
