@@ -2059,43 +2059,43 @@ public class Check extends Update {
         }
         try (Engine engine = new Engine(Check.class.getClassLoader(), getSettings())) {
             try {
-            for (Resource resource : getPath()) {
-                final FileProvider provider = resource.as(FileProvider.class);
-                if (provider != null) {
-                    final File file = provider.getFile();
-                    if (file != null && file.exists()) {
-                        engine.scan(file);
+                for (Resource resource : getPath()) {
+                    final FileProvider provider = resource.as(FileProvider.class);
+                    if (provider != null) {
+                        final File file = provider.getFile();
+                        if (file != null && file.exists()) {
+                            engine.scan(file);
+                        }
                     }
                 }
-            }
-            final ExceptionCollection exceptions = callExecuteAnalysis(engine);
-            if (exceptions == null || !exceptions.isFatal()) {
-                for (String format : getReportFormats()) {
-                    engine.writeReports(getProjectName(), new File(reportOutputDirectory), format, exceptions);
+                final ExceptionCollection exceptions = callExecuteAnalysis(engine);
+                if (exceptions == null || !exceptions.isFatal()) {
+                    for (String format : getReportFormats()) {
+                        engine.writeReports(getProjectName(), new File(reportOutputDirectory), format, exceptions);
+                    }
+                    if (this.failBuildOnCVSS <= 10) {
+                        checkForFailure(engine.getDependencies());
+                    }
+                    if (this.showSummary) {
+                        DependencyCheckScanAgent.showSummary(engine.getDependencies());
+                    }
                 }
-                if (this.failBuildOnCVSS <= 10) {
-                    checkForFailure(engine.getDependencies());
+            } catch (DatabaseException ex) {
+                final String msg = "Unable to connect to the dependency-check database; analysis has stopped";
+                if (this.isFailOnError()) {
+                    throw new BuildException(msg, ex);
                 }
-                if (this.showSummary) {
-                    DependencyCheckScanAgent.showSummary(engine.getDependencies());
+                log(msg, ex, Project.MSG_ERR);
+            } catch (ReportException ex) {
+                final String msg = "Unable to generate the dependency-check report";
+                if (this.isFailOnError()) {
+                    throw new BuildException(msg, ex);
                 }
+                log(msg, ex, Project.MSG_ERR);
+            } finally {
+                engine.close();
+                getSettings().cleanup();
             }
-        } catch (DatabaseException ex) {
-            final String msg = "Unable to connect to the dependency-check database; analysis has stopped";
-            if (this.isFailOnError()) {
-                throw new BuildException(msg, ex);
-            }
-            log(msg, ex, Project.MSG_ERR);
-        } catch (ReportException ex) {
-            final String msg = "Unable to generate the dependency-check report";
-            if (this.isFailOnError()) {
-                throw new BuildException(msg, ex);
-            }
-            log(msg, ex, Project.MSG_ERR);
-        } finally {
-            engine.close();
-            getSettings().cleanup();
-        }
         }
     }
 
