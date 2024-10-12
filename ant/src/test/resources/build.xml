@@ -18,7 +18,6 @@
             <fileset dir="${project.build.directory}/test-classes/jars">
                 <include name="axis-1.4.jar"/>
             </fileset>
-
             <!-- Scan for all jar/war/ear in the webroot dir and all sub directories -->
             <fileset dir="${project.build.directory}/test-classes/webroot">
                 <include name="**/*.jar"/>
