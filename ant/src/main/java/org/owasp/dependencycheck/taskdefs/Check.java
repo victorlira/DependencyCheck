@@ -2058,6 +2058,7 @@ public class Check extends Update {
             throw new BuildException(e);
         }
         try (Engine engine = new Engine(Check.class.getClassLoader(), getSettings())) {
+            try {
             for (Resource resource : getPath()) {
                 final FileProvider provider = resource.as(FileProvider.class);
                 if (provider != null) {
@@ -2092,7 +2093,9 @@ public class Check extends Update {
             }
             log(msg, ex, Project.MSG_ERR);
         } finally {
+            engine.close();
             getSettings().cleanup();
+        }
         }
     }
 
