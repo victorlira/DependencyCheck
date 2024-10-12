@@ -56,7 +56,6 @@
             <dirset dir="${project.build.directory}/test-classes">
                 <include name="lib"/>
             </dirset>
-
         </dependency-check>
         <sleep seconds="2"/>
     </target>
