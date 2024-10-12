@@ -2093,7 +2093,6 @@ public class Check extends Update {
                 }
                 log(msg, ex, Project.MSG_ERR);
             } finally {
-                
                 engine.close();
                 getSettings().cleanup();
             }
