@@ -505,8 +505,8 @@ public final class DatabaseManager {
                 if (db == null) {
                     throw new DatabaseException("Invalid database schema");
                 }
-                LOGGER.debug("DC Schema: {}", appDbVersion);
-                LOGGER.debug("DB Schema: {}", db);
+                LOGGER.error("DC Schema: {}", appDbVersion);
+                LOGGER.error("DB Schema: {}", db);
                 if (appDbVersion.compareTo(db) > 0) {
                     final boolean autoUpdate = settings.getBoolean(Settings.KEYS.AUTO_UPDATE, true);
                     if (autoUpdate) {

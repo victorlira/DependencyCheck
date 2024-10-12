@@ -61,11 +61,11 @@ public abstract class BaseDBTestCase extends BaseTest {
             }
             File dataPath = getSettings().getH2DataDirectory();
             String fileName = getSettings().getString(Settings.KEYS.DB_FILE_NAME);
-            LOGGER.trace("DB file name {}", fileName);
+            LOGGER.error("DB file name {}", fileName);
             File dataFile = new File(dataPath, fileName);
-            LOGGER.trace("Ensuring {} exists", dataFile);
+            LOGGER.error("Ensuring {} exists", dataFile);
             if (!dataPath.exists() || !dataFile.exists()) {
-                LOGGER.trace("Extracting database to {}", dataPath);
+                LOGGER.error("Extracting database to {}", dataPath);
                 dataPath.mkdirs();
                 File path = new File(BaseDBTestCase.class.getClassLoader().getResource("data.zip").toURI().getPath());
                 try (FileInputStream fis = new FileInputStream(path);
