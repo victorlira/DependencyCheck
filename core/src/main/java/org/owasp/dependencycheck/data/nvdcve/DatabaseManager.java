@@ -507,6 +507,7 @@ public final class DatabaseManager {
                 }
                 LOGGER.error("DC Schema: {}", appDbVersion);
                 LOGGER.error("DB Schema: {}", db);
+                
                 if (appDbVersion.compareTo(db) > 0) {
                     final boolean autoUpdate = settings.getBoolean(Settings.KEYS.AUTO_UPDATE, true);
                     if (autoUpdate) {
