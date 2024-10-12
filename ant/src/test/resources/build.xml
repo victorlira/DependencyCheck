@@ -89,7 +89,6 @@
         </dependency-check>
         <sleep seconds="2"/>
     </target>
-
     <target name="test.formatBADNested">
         <dependency-check
                 projectName="test formatBADNested"
