@@ -60,7 +60,6 @@
         </dependency-check>
         <sleep seconds="2"/>
     </target>
-
     <target name="formatBAD">
         <dependency-check
             projectName="test formatBAD"
