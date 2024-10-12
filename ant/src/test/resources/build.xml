@@ -105,7 +105,6 @@
         </dependency-check>
         <sleep seconds="2"/>
     </target>
-
     <target name="failCVSS">
         <dependency-check
             projectName="test failCVSS"
