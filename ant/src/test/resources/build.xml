@@ -72,7 +72,6 @@
         </dependency-check>
         <sleep seconds="2"/>
     </target>
-
     <target name="test.formatNested">
         <dependency-check
                 projectName="test formatNested"
