@@ -51,7 +51,6 @@
             ossindexAnalyzerEnabled="false"
             centralAnalyzerEnabled="false"
             reportFormat="CSV">
-
             <!-- Scan a specific directory -->
             <dirset dir="${project.build.directory}/test-classes">
                 <include name="lib"/>
