@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Dependency-Check Test Build" default="test.fileset" basedir=".">
-
     <taskdef name="dependency-check" classname="org.owasp.dependencycheck.taskdefs.Check" />
-
     <!-- HACK: disabling ossindex analyzer as it may cause failures due to rate-limiting -->
-
     <target name="test.fileset">
         <dependency-check
             projectName="My Project"
