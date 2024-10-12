@@ -42,7 +42,7 @@ jobs:
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: |
-          mvn -V -s settings.xml --no-transfer-progress --batch-mode  package -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dtest=org.owasp.dependencycheck.taskdefs.DependencyCheckTaskIT -pl ant -am
+          mvn -V -s settings.xml --no-transfer-progress --batch-mode -pl ant -am verify
           mvn -V -s settings.xml --no-transfer-progress --batch-mode  package -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dtest=org.owasp.dependencycheck.taskdefs.DependencyCheckTaskIT -pl ant -am
           mvn -V -s settings.xml --no-transfer-progress --batch-mode  package -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dtest=org.owasp.dependencycheck.taskdefs.DependencyCheckTaskIT -pl ant -am
           mvn -V -s settings.xml --no-transfer-progress --batch-mode  package -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dtest=org.owasp.dependencycheck.taskdefs.DependencyCheckTaskIT -pl ant -am
