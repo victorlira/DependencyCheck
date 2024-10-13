@@ -69,7 +69,6 @@ public class DependencyCheckTaskIT extends BaseDBTestCase {
             LOGGER.error("\n\n" + buildFileRule.getLog());
             LOGGER.error("--------------------------------------");
             throw new Exception("Ant Log:\n\n:" + buildFileRule.getLog(), ex);
-            
         }
         assertTrue("DependencyCheck report was not generated", report.exists());
     }
