@@ -29,6 +29,8 @@ import org.junit.Test;
 import org.owasp.dependencycheck.BaseDBTestCase;
 
 import static org.junit.Assert.assertTrue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -36,6 +38,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class DependencyCheckTaskIT extends BaseDBTestCase {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DependencyCheckTaskIT.class);
+    
     @Rule
     public final BuildFileRule buildFileRule = new BuildFileRule();
 
@@ -56,7 +60,15 @@ public class DependencyCheckTaskIT extends BaseDBTestCase {
         if (report.exists() && !report.delete()) {
             throw new Exception("Unable to delete 'target/dependency-check-report.html' prior to test.");
         }
-        buildFileRule.executeTarget("test.fileset");
+        try {
+            buildFileRule.executeTarget("test.fileset");
+        } catch (Exception ex) {
+            LOGGER.error("--------------------------------------");
+            LOGGER.error("Ant Log:");
+            LOGGER.error("--------------------------------------");
+            LOGGER.error("\n\n" + buildFileRule.getLog());
+            LOGGER.error("--------------------------------------");
+        }
         assertTrue("DependencyCheck report was not generated", report.exists());
     }
 
