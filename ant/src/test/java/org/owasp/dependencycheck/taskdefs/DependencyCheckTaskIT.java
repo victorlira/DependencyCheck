@@ -66,7 +66,6 @@ public class DependencyCheckTaskIT extends BaseDBTestCase {
             LOGGER.error("--------------------------------------");
             LOGGER.error("Ant Log:");
             LOGGER.error("--------------------------------------");
-            
             LOGGER.error("\n\n" + buildFileRule.getLog());
             LOGGER.error("--------------------------------------");
         }
